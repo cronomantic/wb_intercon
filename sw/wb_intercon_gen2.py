@@ -112,8 +112,8 @@ class WbIntercon:
         data = ordered_load(open(config_file))
 
         config     = data['parameters']
-        files_root = data['files_root']
-        self.vlnv       = data['vlnv']
+        #files_root = data['files_root']
+        #self.vlnv       = data['vlnv']
 
         valid_endians = ['big', 'little']
         if 'endian' in config:
@@ -390,22 +390,22 @@ class WbIntercon:
         self.verilog_writer.write(file)
         self.template_writer.write(file+'h')
 
-        core_file = self.vlnv.split(':')[2]+'.core'
-        vlnv = self.vlnv
-        with open(core_file, 'w') as f:
-            f.write('CAPI=2:\n')
-            files = [{file     : {'file_type' : 'verilogSource'}},
-                     {file+'h' : {'is_include_file' : True,
-                                  'file_type' : 'verilogSource'}}
-            ]
-            coredata = {'name' : vlnv,
-                        'targets' : {'default' : {}},
-            }
-
-            coredata['filesets'] = {'rtl' : {'files' : files}}
-            coredata['targets']['default']['filesets'] = ['rtl']
-
-            f.write(yaml.dump(coredata))
+#        core_file = self.vlnv.split(':')[2]+'.core'
+#        vlnv = self.vlnv
+#        with open(core_file, 'w') as f:
+#            f.write('CAPI=2:\n')
+#            files = [{file     : {'file_type' : 'verilogSource'}},
+#                     {file+'h' : {'is_include_file' : True,
+#                                  'file_type' : 'verilogSource'}}
+#            ]
+#            coredata = {'name' : vlnv,
+#                        'targets' : {'default' : {}},
+#            }
+#
+#            coredata['filesets'] = {'rtl' : {'files' : files}}
+#            coredata['targets']['default']['filesets'] = ['rtl']
+#
+#            f.write(yaml.dump(coredata))
 
 if __name__ == "__main__":
     #if len(sys.argv) < 3 or len(sys.argv) > 4:

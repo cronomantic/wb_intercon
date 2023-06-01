@@ -101,7 +101,7 @@ class VerilogWriter:
         s = self.header
 
         if self.ports:
-            s += "`default_nettype none\n"
+            #s += "`default_nettype none\n"
             s += "module {name}\n".format(name=self.name)
             type_len = max([len(p._type or "wire") for p in self.ports])
             max_len = max([len(p.range()) for p in self.ports])
